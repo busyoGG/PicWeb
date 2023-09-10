@@ -79,7 +79,7 @@
 }
 td {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 td > input {
   display: block;
