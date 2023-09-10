@@ -7,7 +7,7 @@ let viewMap = {
     msgBox: $("#msg"),
     isUploading: false,
     clear() {
-        this.resourceBox.html("")
+        // this.resourceBox.html("")
         this.msgBox.html("")
     },
     checkIsHasTask() {
@@ -236,7 +236,7 @@ let uploadToGithub = function (base64Data, fileName) {
 
     let controller = new AbortController();
     //请求超时
-    setTimeout(() => {
+    let timer = setTimeout(() => {
         controller.abort();
     }, 3000);
 
@@ -269,6 +269,7 @@ let uploadToGithub = function (base64Data, fileName) {
         } else {
             viewMap.setUploadCompleted({ errInfo: err, fileName })
         }
+        clearTimeout(timer);
     })
 }
 
