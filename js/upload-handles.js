@@ -162,12 +162,12 @@ let uploadToGithub = function (base64Data, fileName) {
         url: "https://119.91.196.91/imgUpload/",
         contentType:"application/json",
         dataType: 'json',
-        data: JSON.stringify({
+        data: {
             // message: `Web tool: Upload ${fileName} file`,
             // branch: configObj.branch,
             content: fileData,
             fileName: fileName
-        }),
+        },
         timeout: 3000, // 设置超时时间为0，表示无限等待
         success(data) {
             let initUrl = data.content.download_url;
