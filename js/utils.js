@@ -2,7 +2,12 @@ function urlFormat(url, format = "md", describe = new Date().Format('yyyy-MM-dd'
   switch (format) {
     case "md":
       return `![](${url})`
-      break
+      case "html":
+      return `<img src="(${url})" >`
+      case "bb":
+      return `[img](${url})[/img]`
+      case "rl":
+      return `![](${url})`
     default:
       return url
   }

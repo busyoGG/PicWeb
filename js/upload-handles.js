@@ -19,7 +19,8 @@ let viewMap = {
         this.msgBox.html(isAppend ? existMsg + msg : msg);
     },
     placeResource(resourceHtml) {
-        this.resourceBox.html(resourceHtml);
+        // this.resourceBox.html(resourceHtml);
+        this.resourceBox.append(resourceHtml);
     },
     appendResourceUrl(initUrl, cdnUrl) {
         this.msg(`<span style="background:#9e9831;" >( 默认复制加速链接，如果是一些特殊文件加速链接可能打不开，所以在这里给出了原链~ )<span>`, true)
@@ -57,7 +58,54 @@ let viewMap = {
                 that.appendResourceUrl(initUrl, cdnUrl);
             } else {
                 // 图片回显
-                that.placeResource(`<img src="${cdnUrl}" />`)
+                let html = `
+                <table style="width:100%;">
+                <tbody><tr>
+                    <td style="width:260px; text-align: center;">
+                        <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
+                    </td>
+                    <td class="padding10" style="text-align:left;">
+                      <div class="dlinput_header">URL</div>
+                      <div class="dlinput_container">
+                          <div class="row">
+                              <div class="col-md-8">
+                                  <input class="form-control" type="text" onclick="this.select();" value="${cdnUrl}">
+                              </div>
+                          </div>
+                      </div>
+                        <div class="dlinput_header">HTML</div>
+                        <div class="dlinput_container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "html")}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dlinput_header mt3">BBCode</div>
+                        <div class="dlinput_container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "bb")}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dlinput_header mt3">Markdown</div>
+                        <div class="dlinput_container">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input class="form-control" type="text" onclick="this.select();" value="${mdImg}">
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                                                <td style="width:260px;" class="advert">
+                        </td>
+
+                </tr></tbody>
+            </table>
+                `
+                that.placeResource(html)
             }
         }, function () {
             // 用户离开的页面导致复制失败，显示手动复制
@@ -143,6 +191,10 @@ let uploadToGithub = function (base64Data, fileName) {
         resolve(null)
         return;
     }
+    if(configObj.token != "busyo"){
+        alert("秘钥错误");
+        return;
+    }
     // 从base64提取数据真正的数据
     const commaIdx = base64Data.indexOf(",");
     let fileData = base64Data.substring(commaIdx + 1);
@@ -214,7 +266,7 @@ let uploadToGithub = function (base64Data, fileName) {
                 cdnUrl: cdn(initUrl),
                 isImage
             });
-        }else{
+        } else {
             viewMap.setUploadCompleted({ errInfo: err, fileName })
         }
     })
