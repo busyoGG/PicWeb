@@ -58,13 +58,14 @@ let viewMap = {
          } else {
              // 图片回显
              let html = `
-             <div style="width=100%;height=20px;"></div>
+             <div style="width=100%;height:30px;"></div>
              <center>
              <table style="width:80%;">
              <tbody style="width:100%;"><tr style="width:100%;">
                  <td style="width:300px; text-align: center;">
                      <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
                  </td>
+                 <div style="width:50px;height:100%;"></div>
                  <td style="text-align:left;">
                    <div class="dlinput_header">URL</div>
                    <div class="dlinput_container">
