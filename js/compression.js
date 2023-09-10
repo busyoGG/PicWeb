@@ -20,7 +20,11 @@ function isImageFile(file) {
 }
 function ImgFileCheckCompression(originFile) {
     return new Promise((resolve, reject) => {
-        let compressionConfig = JSON.parse(localStorage.getItem("config")).compression_config;
+        let compressData = localStorage.getItem("config");
+        let compressionConfig = null;
+        if(compressData){
+            compressionConfig = JSON.parse(localStorage.getItem("config")).compression_config;
+        }
         if (compressionConfig == null || compressionConfig.compression != 1) {
             // 如果逻辑回调返回false表示不进行压缩，则  originFile 就是压缩的对象，等于没压缩
             resolve(originFile);
