@@ -160,7 +160,8 @@ let uploadToGithub = function (base64Data, fileName) {
         type: 'POST',
         // url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configObj.path}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`,
         url: "https://119.91.196.91/imgUpload/",
-        contentType: 'JSON',
+        contentType:"application/json",
+        dataType: 'json',
         data: JSON.stringify({
             // message: `Web tool: Upload ${fileName} file`,
             // branch: configObj.branch,
