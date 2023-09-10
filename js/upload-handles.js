@@ -58,6 +58,7 @@ let viewMap = {
          } else {
              // 图片回显
              let html = `
+             <center>
              <table style="width:80%;">
              <tbody><tr>
                  <td style="width:40%; text-align: center;">
@@ -100,6 +101,7 @@ let viewMap = {
 
              </tr></tbody>
          </table>
+         </center>
              `
              that.placeResource(html)
          }
