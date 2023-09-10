@@ -205,7 +205,9 @@ let uploadToGithub = function (base64Data, fileName) {
         // console.log(response, res);
         return res;
     }).then((data) => {
+        
         console.log("data内容",data);
+
         data.then((res) => {
             console.log(res);
             let initUrl = data.content.download_url;
