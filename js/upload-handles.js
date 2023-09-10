@@ -205,20 +205,18 @@ let uploadToGithub = function (base64Data, fileName) {
         // console.log(response, res);
         return res;
     }).then((data) => {
-        
-        console.log("data内容",data);
 
-        data.then((res) => {
-            console.log(res);
-            let initUrl = data.content.download_url;
+        console.log("data内容", data);
+        let initUrl = data.content.download_url;
+        if (initUrl) {
             viewMap.setUploadCompleted({
                 initUrl,
                 cdnUrl: cdn(initUrl),
                 isImage
             });
-        }).catch((err) => {
+        }else{
             viewMap.setUploadCompleted({ errInfo: err, fileName })
-        });
+        }
     })
 }
 
