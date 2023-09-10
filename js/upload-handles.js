@@ -191,10 +191,14 @@ let uploadToGithub = function (base64Data, fileName) {
             'fileName': fileName
         })
     })).then(function (response) {
-        console.log(response,response.json());
-        return response.json();
-    }).catch((err)=>{
-        viewMap.setUploadCompleted({ errInfo:err, fileName })
+        let res = response.json();
+        res.then((data) => {
+            console.log(data);
+        });
+        console.log(response, res);
+        return res;
+    }).catch((err) => {
+        viewMap.setUploadCompleted({ errInfo: err, fileName })
     })
 }
 
