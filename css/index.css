@@ -185,7 +185,16 @@ body::-webkit-scrollbar {
   margin-top: 10px;
 }
 
-.dlinput_container input{width:150%}
+.dlinput_container input{
+  /* width:150 */
+  display: block;
+  width: 150%;
+  max-width: 150%;
+  border: none;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 0px !important;  
+}
 
 .row {
   display: -ms-flexbox;

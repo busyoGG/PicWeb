@@ -2,9 +2,9 @@ function urlFormat(url, format = "md", describe = new Date().Format('yyyy-MM-dd'
   switch (format) {
     case "md":
       return `![](${url})`
-      case "html":
-      return "<img src=\"" + url + "\" >"
-      case "bb":
+    case "html":
+      return `<img src='${url}' >`
+    case "bb":
       return `[img]${url}[/img]`
     default:
       return url
@@ -18,30 +18,30 @@ function bindCopy(parent, target, targetAttr, even) {
     // 阻止默认事件
     e.preventDefault();
     // 将链接复制到剪切板
-    
+
     // 防止点击到i标签，如果点到i标签应向上找a标签
-    let aElement = $(e.target).closest('a'); 
+    let aElement = $(e.target).closest('a');
     let fileInitUrl = aElement.attr(targetAttr)
-    navigator.clipboard.writeText(fileInitUrl).then(()=> {
-      if(aElement != null) aElement.text("复制成功！\(￣︶￣*\))")
-    }, ()=> {
-      if(aElement != null) aElement.text("复制失败了 (;´༎ຶД༎ຶ`)")
+    navigator.clipboard.writeText(fileInitUrl).then(() => {
+      if (aElement != null) aElement.text("复制成功！\(￣︶￣*\))")
+    }, () => {
+      if (aElement != null) aElement.text("复制失败了 (;´༎ຶД༎ຶ`)")
     });
   })
 
 }
 // 将字符串转为文本对象
-function StringToTextFile(text,fileName) {
+function StringToTextFile(text, fileName) {
   var reader = new FileReader();
-  let file = new File([text],fileName ,{
-      type: 'text/plain'
+  let file = new File([text], fileName, {
+    type: 'text/plain'
   });
   return file;
 }
 // 读取文本文件
 function readTextFile(file, readFun) {
   reader.readAsText(file, 'utf-8');
-  reader.onload = function(){
+  reader.onload = function () {
     readFun(reader.result)
   };
 }
@@ -58,7 +58,7 @@ function Base64ToBlob(base64) {
 }
 //FileReader方法： https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
 function FileToBase64(file) {
-  return new Promise((resolve,reject)=>{
+  return new Promise((resolve, reject) => {
     let reader = new FileReader();
     // 传入一个参数对象即可得到基于该参数对象的文本内容
     reader.readAsDataURL(file);
@@ -67,7 +67,7 @@ function FileToBase64(file) {
       resolve(e.target.result);
     };
   })
-  
+
 }
 
 
@@ -75,7 +75,7 @@ function FileToBase64(file) {
 let recoveTitle = (function recoverTitle() {
   let originalTitle = document.title;
   return function (transitionTime) {
-    if(transitionTime == null) {
+    if (transitionTime == null) {
       document.title = originalTitle;
       return;
     }
@@ -92,4 +92,4 @@ function transitionChangeTitle(title = "", transitionTime) {
     recoveTitle(transitionTime)
   }
 }
-export {transitionChangeTitle,FileToBase64,bindCopy,urlFormat}
+export { transitionChangeTitle, FileToBase64, bindCopy, urlFormat }
