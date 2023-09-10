@@ -122,14 +122,18 @@ function genTimestampImgFileName(originalFileName) {
 
 // cdn加速
 function cdn(url) {
-    let cdnUrl = (configObj.cdn != null && configObj.cdn.indexOf("http") == 0) ? configObj.cdn : "https://cdn.jsdelivr.net/gh";
-    if (cdnUrl.lastIndexOf("/") != cdnUrl.length - 1) cdnUrl += "/";
-    let delimiter = configObj.branch + "/";
-    let start_index = url.indexOf(delimiter);
-    let _last_str = url.substring(start_index, url.length)
-    let last_str = configObj.userAndRepo + "@" + _last_str
+    // let cdnUrl = (configObj.cdn != null && configObj.cdn.indexOf("http") == 0) ? configObj.cdn : "https://cdn.jsdelivr.net/gh";
+    // if (cdnUrl.lastIndexOf("/") != cdnUrl.length - 1) cdnUrl += "/";
+    // let delimiter = configObj.branch + "/";
+    // let start_index = url.indexOf(delimiter);
+    // let _last_str = url.substring(start_index, url.length)
+    // let last_str = configObj.userAndRepo + "@" + _last_str
     // 返回加速后的链接
-    return cdnUrl + last_str;
+    // return cdnUrl + last_str;
+    // return url.replace("");
+    
+    //cdn加速在服务端已完成
+    return url;
 }
 
 // 主要给 UploadFromFile 使用，是UploadFromFile的支撑
