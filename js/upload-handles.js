@@ -182,6 +182,12 @@ let uploadToGithub = function (base64Data, fileName) {
     //     }
     // })
 
+    let controller = new AbortController();
+    //请求超时
+    setTimeout(() => {
+        controller.abort();
+    }, 3000);
+
     fetch(new Request('https://119.91.196.91/imgUpload/', {
         method: 'POST',
         body: JSON.stringify({
@@ -189,16 +195,27 @@ let uploadToGithub = function (base64Data, fileName) {
             // branch: configObj.branch,
             'content': fileData,
             'fileName': fileName
-        })
+        }),
+        signal: controller.signal
     })).then(function (response) {
         let res = response.json();
-        res.then((data) => {
-            console.log(data);
-        });
-        console.log(response, res);
+        // res.then((data) => {
+        //     console.log(data);
+        // });
+        // console.log(response, res);
         return res;
-    }).catch((err) => {
-        viewMap.setUploadCompleted({ errInfo: err, fileName })
+    }).then((data) => {
+        data.then((res) => {
+            console.log(res);
+            let initUrl = data.content.download_url;
+            viewMap.setUploadCompleted({
+                initUrl,
+                cdnUrl: cdn(initUrl),
+                isImage
+            });
+        }).catch((err) => {
+            viewMap.setUploadCompleted({ errInfo: err, fileName })
+        });
     })
 }
 
