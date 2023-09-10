@@ -50,70 +50,121 @@ let viewMap = {
         let mdImg = urlFormat(cdnUrl, "md")
         console.log(cdnUrl);
         let that = this;
-        navigator.clipboard.writeText(isImage ? mdImg : cdnUrl).then(function () {
-            // 如果不是图片，显示下载链接复制选项
-            that.msg(`<p id='uploadSuccessTis'>② 上传成功了，请查看剪切板！ヾ(^▽^*)))</p>`, true);
-            transitionChangeTitle("success", 1000);
-            if (!isImage) {
-                that.appendResourceUrl(initUrl, cdnUrl);
-            } else {
-                // 图片回显
-                let html = `
-                <table style="width:100%;">
-                <tbody><tr>
-                    <td style="width:260px; text-align: center;">
-                        <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
-                    </td>
-                    <td class="padding10" style="text-align:left;">
-                      <div class="dlinput_header">URL</div>
-                      <div class="dlinput_container">
-                          <div class="row">
-                              <div class="col-md-8">
-                                  <input class="form-control" type="text" onclick="this.select();" value="${cdnUrl}">
-                              </div>
-                          </div>
-                      </div>
-                        <div class="dlinput_header">HTML</div>
-                        <div class="dlinput_container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "html")}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dlinput_header mt3">BBCode</div>
-                        <div class="dlinput_container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "bb")}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dlinput_header mt3">Markdown</div>
-                        <div class="dlinput_container">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <input class="form-control" type="text" onclick="this.select();" value="${mdImg}">
-                                </div>
-                            </div>
-                        </div>
-                    </td>
+         // 如果不是图片，显示下载链接复制选项
+         that.msg(`<p id='uploadSuccessTis'>② 上传成功</p>`, true);
+         transitionChangeTitle("success", 1000);
+         if (!isImage) {
+             that.appendResourceUrl(initUrl, cdnUrl);
+         } else {
+             // 图片回显
+             let html = `
+             <table style="width:100%;">
+             <tbody><tr>
+                 <td style="width:260px; text-align: center;">
+                     <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
+                 </td>
+                 <td class="padding10" style="text-align:left;">
+                   <div class="dlinput_header">URL</div>
+                   <div class="dlinput_container">
+                       <div class="row">
+                           <div class="col-md-8">
+                               <input class="form-control" type="text" onclick="this.select();" value="${cdnUrl}">
+                           </div>
+                       </div>
+                   </div>
+                     <div class="dlinput_header">HTML</div>
+                     <div class="dlinput_container">
+                         <div class="row">
+                             <div class="col-md-8">
+                                 <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "html")}">
+                             </div>
+                         </div>
+                     </div>
+                     <div class="dlinput_header mt3">BBCode</div>
+                     <div class="dlinput_container">
+                         <div class="row">
+                             <div class="col-md-8">
+                                 <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "bb")}">
+                             </div>
+                         </div>
+                     </div>
+                     <div class="dlinput_header mt3">Markdown</div>
+                     <div class="dlinput_container">
+                         <div class="row">
+                             <div class="col-md-8">
+                                 <input class="form-control" type="text" onclick="this.select();" value="${mdImg}">
+                             </div>
+                         </div>
+                     </div>
+                 </td>
 
-                                                <td style="width:260px;" class="advert">
-                        </td>
+             </tr></tbody>
+         </table>
+             `
+             that.placeResource(html)
+         }
+         //复制到剪贴板
+        // navigator.clipboard.writeText(isImage ? mdImg : cdnUrl).then(function () {
+        //     // 如果不是图片，显示下载链接复制选项
+        //     that.msg(`<p id='uploadSuccessTis'>② 上传成功了，请查看剪切板！ヾ(^▽^*)))</p>`, true);
+        //     transitionChangeTitle("success", 1000);
+        //     if (!isImage) {
+        //         that.appendResourceUrl(initUrl, cdnUrl);
+        //     } else {
+        //         // 图片回显
+        //         let html = `
+        //         <table style="width:100%;">
+        //         <tbody><tr>
+        //             <td style="width:260px; text-align: center;">
+        //                 <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
+        //             </td>
+        //             <td class="padding10" style="text-align:left;">
+        //               <div class="dlinput_header">URL</div>
+        //               <div class="dlinput_container">
+        //                   <div class="row">
+        //                       <div class="col-md-8">
+        //                           <input class="form-control" type="text" onclick="this.select();" value="${cdnUrl}">
+        //                       </div>
+        //                   </div>
+        //               </div>
+        //                 <div class="dlinput_header">HTML</div>
+        //                 <div class="dlinput_container">
+        //                     <div class="row">
+        //                         <div class="col-md-8">
+        //                             <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "html")}">
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //                 <div class="dlinput_header mt3">BBCode</div>
+        //                 <div class="dlinput_container">
+        //                     <div class="row">
+        //                         <div class="col-md-8">
+        //                             <input class="form-control" type="text" onclick="this.select();" value="${urlFormat(cdnUrl, "bb")}">
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //                 <div class="dlinput_header mt3">Markdown</div>
+        //                 <div class="dlinput_container">
+        //                     <div class="row">
+        //                         <div class="col-md-8">
+        //                             <input class="form-control" type="text" onclick="this.select();" value="${mdImg}">
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </td>
 
-                </tr></tbody>
-            </table>
-                `
-                that.placeResource(html)
-            }
-        }, function () {
-            // 用户离开的页面导致复制失败，显示手动复制
-            that.msg("<span style='color:red'>② Writing to the clipboard failed because you are not on this page :-( </span>")
-            that.placeResource(`<p style="color:#2cb144;" class="resource_box" > <a href="${cdnUrl}" class="copyUrl" >手动复制（MD图片）<i class="fa fa-clone" aria-hidden="true"></i></a></p>`)
-            // 给资源链接绑定copy功能
-            transitionChangeTitle("No way!", 500);
-        });
+        //         </tr></tbody>
+        //     </table>
+        //         `
+        //         that.placeResource(html)
+        //     }
+        // }, function () {
+        //     // 用户离开的页面导致复制失败，显示手动复制
+        //     that.msg("<span style='color:red'>② Writing to the clipboard failed because you are not on this page :-( </span>")
+        //     that.placeResource(`<p style="color:#2cb144;" class="resource_box" > <a href="${cdnUrl}" class="copyUrl" >手动复制（MD图片）<i class="fa fa-clone" aria-hidden="true"></i></a></p>`)
+        //     // 给资源链接绑定copy功能
+        //     transitionChangeTitle("No way!", 500);
+        // });
     },
     uploadFail({ errInfo, fileName }) {
         if (errInfo.status == 422) {

@@ -3,7 +3,7 @@ function urlFormat(url, format = "md", describe = new Date().Format('yyyy-MM-dd'
     case "md":
       return `![](${url})`
       case "html":
-      return `<img src=\"${url}\" >`
+      return "<img src=\"" + url + "\" >"
       case "bb":
       return `[img]${url}[/img]`
     default:
