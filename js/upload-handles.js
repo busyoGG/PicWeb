@@ -62,10 +62,10 @@ let viewMap = {
              <center>
              <table style="width:80%;">
              <tbody style="width:100%;"><tr style="width:100%;">
-                 <td style="width:40%; text-align: center;">
+                 <td style="width:300px; text-align: center;">
                      <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
                  </td>
-                 <td class="width:60%" style="text-align:left;">
+                 <td style="text-align:left;">
                    <div class="dlinput_header">URL</div>
                    <div class="dlinput_container">
                        <div class="row">

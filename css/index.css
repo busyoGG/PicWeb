@@ -98,7 +98,7 @@ select {
   background-color: #fff;
 }
 table {
-  display: block;
+  display: table;
   overflow: hidden;
   table-layout: fixed;
 }
