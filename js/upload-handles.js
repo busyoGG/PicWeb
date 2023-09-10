@@ -47,6 +47,7 @@ let viewMap = {
         // 将预图片去掉
         this.sensingArea(null)
         let mdImg = urlFormat(cdnUrl, "md")
+        console.log(cdnUrl);
         let that = this;
         navigator.clipboard.writeText(isImage ? mdImg : cdnUrl).then(function () {
             // 如果不是图片，显示下载链接复制选项
@@ -117,7 +118,7 @@ function fileDataProcessing(file) {
 function genTimestampImgFileName(originalFileName) {
     if (originalFileName == null) return originalFileName;
     let suffix = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-    return new Date().getTime() + "." + suffix
+    return new Date().Format("yyyyMMdd-hhmmss") + "-" + new Date().getMilliseconds() + "." + suffix
 }
 
 // cdn加速
@@ -131,7 +132,7 @@ function cdn(url) {
     // 返回加速后的链接
     // return cdnUrl + last_str;
     // return url.replace("");
-    
+
     //cdn加速在服务端已完成
     return url;
 }
@@ -169,7 +170,7 @@ let uploadToGithub = function (base64Data, fileName) {
             content: fileData,
             fileName: fileName
         }),
-        timeout: 0, // 设置超时时间为0，表示无限等待
+        timeout: 3000, // 设置超时时间为0，表示无限等待
         success(data) {
             let initUrl = data.content.download_url;
             viewMap.setUploadCompleted({
