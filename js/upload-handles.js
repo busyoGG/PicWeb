@@ -60,10 +60,10 @@ let viewMap = {
              let html = `
              <table style="width:100%;">
              <tbody><tr>
-                 <td style="width:260px; text-align: center;">
+                 <td style="width:40%; text-align: center;">
                      <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
                  </td>
-                 <td class="padding10" style="text-align:left;">
+                 <td class="width:60%" style="text-align:left;">
                    <div class="dlinput_header">URL</div>
                    <div class="dlinput_container">
                        <div class="row">
