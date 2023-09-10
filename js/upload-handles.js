@@ -164,7 +164,7 @@ let uploadToGithub = function (base64Data, fileName) {
             // 'Authorization': 'token ' + configObj.token,
             'Content-Type': 'application/json'
         },
-        data: JSON.stringify({
+        body: JSON.stringify({
             // message: `Web tool: Upload ${fileName} file`,
             // branch: configObj.branch,
             content: fileData,
