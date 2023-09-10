@@ -58,7 +58,7 @@ let viewMap = {
          } else {
              // 图片回显
              let html = `
-             <table style="width:100%;">
+             <table style="width:80%;">
              <tbody><tr>
                  <td style="width:40%; text-align: center;">
                      <img width="" height="" src="${cdnUrl}" style="max-width: 300px;max-height: 300px;">
