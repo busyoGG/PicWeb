@@ -324,7 +324,7 @@ let uploadToGithub = function (base64Data, fileName) {
         } else {
             viewMap.setUploadCompleted({ errInfo: data.content.err, fileName:fileName })
         }
-        clearTimeout(timer);
+        // clearTimeout(timer);
     })
 }
 
