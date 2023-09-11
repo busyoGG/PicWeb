@@ -289,11 +289,11 @@ let uploadToGithub = function (base64Data, fileName) {
     //     }
     // })
 
-    let controller = new AbortController();
-    //请求超时
-    let timer = setTimeout(() => {
-        controller.abort();
-    }, 3000);
+    // let controller = new AbortController();
+    // //请求超时
+    // let timer = setTimeout(() => {
+    //     controller.abort();
+    // }, 3000);
 
     fetch(new Request('https://119.91.196.91/imgUpload/', {
         method: 'POST',
@@ -303,7 +303,7 @@ let uploadToGithub = function (base64Data, fileName) {
             'content': fileData,
             'fileName': fileName
         }),
-        signal: controller.signal
+        // signal: controller.signal
     })).then(function (response) {
         let res = response.json();
         // res.then((data) => {
@@ -322,7 +322,7 @@ let uploadToGithub = function (base64Data, fileName) {
                 isImage
             });
         } else {
-            viewMap.setUploadCompleted({ errInfo: err, fileName })
+            viewMap.setUploadCompleted({ errInfo: data.content.err, fileName:fileName })
         }
         clearTimeout(timer);
     })
