@@ -271,6 +271,9 @@ let uploadToGithub = function (fileData, fileName) {
     fetch(new Request('https://119.91.196.91/imgUpload/', {
         method: 'POST',
         body: formData,
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
         // signal: controller.signal
     })).then(function (response) {
         let res = response.json();
