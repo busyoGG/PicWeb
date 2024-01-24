@@ -70,6 +70,15 @@ function FileToBase64(file) {
 
 }
 
+function FileToBlob(file){
+  var data = new ArrayBuffer(file.length);//创建一个长度为text.length的二进制缓存区
+    var ui8a = new Uint8Array(data, 0);
+    for (var i = 0; i < text.length; i++){ 
+        ui8a[i] = file.charCodeAt(i);
+    }
+    return new Blob([u8arr], { type: mime })
+}
+
 
 // 过渡式更改标题的函数
 let recoveTitle = (function recoverTitle() {

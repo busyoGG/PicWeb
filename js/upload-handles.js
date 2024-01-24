@@ -241,8 +241,8 @@ function cdn(url) {
 }
 
 // 主要给 UploadFromFile 使用，是UploadFromFile的支撑
-let uploadToGithub = function (base64Data, fileName) {
-    if (base64Data == null) {
+let uploadToGithub = function (fileData, fileName) {
+    if (fileData == null) {
         resolve(null)
         return;
     }
@@ -251,14 +251,15 @@ let uploadToGithub = function (base64Data, fileName) {
         return;
     }
     // 从base64提取数据真正的数据
-    const commaIdx = base64Data.indexOf(",");
-    let fileData = base64Data.substring(commaIdx + 1);
+    // const commaIdx = base64Data.indexOf(",");
+    // let fileData = base64Data.substring(commaIdx + 1);
     // 决定出是否为图片与最终的fileName
-    let isImage = false;
-    if (base64Data.startsWith("data:image")) {
-        fileName = genTimestampImgFileName(fileName);
-        isImage = true;
-    }
+    let isImage = true;
+    fileName = genTimestampImgFileName(fileName);
+    // if (base64Data.startsWith("data:image")) {
+    //     fileName = genTimestampImgFileName(fileName);
+    //     isImage = true;
+    // }
     // 判断当前是否有任务
     if (viewMap.checkIsHasTask()) return;
     // 设置为正在上传
