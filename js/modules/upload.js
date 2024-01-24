@@ -27,12 +27,12 @@ let UploadFromFile = async function (file) {
   if (file == null) return;
   file = await ImgFileCheckCompression(file);
   if (file == null) return;
-  transitionChangeTitle("base64...");
+  // transitionChangeTitle("base64...");
   // let base64Data = await FileToBase64(file);
   let fileData = await FileToBlob(file);
   console.log("读取数据",fileData);
   // 还原标题
-  transitionChangeTitle(); 
+  // transitionChangeTitle(); 
   uploadToGithub(fileData, file.name);
 
 }

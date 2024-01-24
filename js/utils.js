@@ -82,12 +82,12 @@ function FileToBlob(file) {
   return new Promise((resolve, reject) => {
     let reader = new FileReader();
     // 传入一个参数对象即可得到基于该参数对象的文本内容
-    reader.readAsArrayBuffer(file);
     reader.onload = function (e) {
       // target.result 该属性表示目标对象的DataURL
       const blob = new Blob([reader.result], { type: file.type });
       resolve(blob);
     };
+    reader.readAsArrayBuffer(file);
   });
 }
 
