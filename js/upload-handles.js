@@ -272,7 +272,7 @@ let uploadToGithub = function (fileData, fileName) {
         method: 'POST',
         body: formData,
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
         // signal: controller.signal
     })).then(function (response) {
