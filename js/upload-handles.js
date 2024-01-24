@@ -264,44 +264,13 @@ let uploadToGithub = function (fileData, fileName) {
     if (viewMap.checkIsHasTask()) return;
     // 设置为正在上传
     viewMap.setUploading();
-    // $.ajax({
-    //     type: 'POST',
-    //     // url: `https://api.github.com/repos/${configObj.userAndRepo}/contents${configObj.path}/${new Date().Format("yyyy")}/${new Date().Format("MM")}/${new Date().Format("dd")}/${fileName}`,
-    //     url: "https://119.91.196.91/imgUpload/",
-    //     contentType: "application/json;charset=utf-8",
-    //     dataType: 'json',
-    //     data: JSON.stringify({
-    //         // message: `Web tool: Upload ${fileName} file`,
-    //         // branch: configObj.branch,
-    //         'content': fileData,
-    //         'fileName': fileName
-    //     }),
-    //     timeout: 3000, // 设置超时时间为0，表示无限等待
-    //     success(data) {
-    //         let initUrl = data.content.download_url;
-    //         viewMap.setUploadCompleted({
-    //             initUrl,
-    //             cdnUrl: cdn(initUrl),
-    //             isImage
-    //         });
-    //     },
-    //     error(errInfo) {
-    //         viewMap.setUploadCompleted({ errInfo, fileName })
-    //     }
-    // })
 
-    // let controller = new AbortController();
-    // //请求超时
-    // let timer = setTimeout(() => {
-    //     controller.abort();
-    // }, 3000);
+    const formData = new FormData();
+    formData.append('file', file, fileName);
 
     fetch(new Request('https://119.91.196.91/imgUpload/', {
         method: 'POST',
-        body: JSON.stringify({
-            'content': fileData,
-            'fileName': fileName
-        }),
+        body: formData,
         // signal: controller.signal
     })).then(function (response) {
         let res = response.json();
