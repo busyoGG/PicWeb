@@ -266,7 +266,7 @@ let uploadToGithub = function (fileData, fileName) {
     viewMap.setUploading();
 
     const formData = new FormData();
-    formData.append('file', file, fileName);
+    formData.append('file', fileData, fileName);
 
     fetch(new Request('https://119.91.196.91/imgUpload/', {
         method: 'POST',
