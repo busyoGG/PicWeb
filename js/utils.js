@@ -1,13 +1,17 @@
-function urlFormat(url, format = "md", describe = new Date().Format('yyyy-MM-dd')) {
+function urlFormat(
+  url,
+  format = "md",
+  describe = new Date().Format("yyyy-MM-dd")
+) {
   switch (format) {
     case "md":
-      return `![](${url})`
+      return `![](${url})`;
     case "html":
-      return `<img src='${url}' >`
+      return `<img src='${url}' >`;
     case "bb":
-      return `[img]${url}[/img]`
+      return `[img]${url}[/img]`;
     default:
-      return url
+      return url;
   }
 }
 
@@ -20,41 +24,46 @@ function bindCopy(parent, target, targetAttr, even) {
     // 将链接复制到剪切板
 
     // 防止点击到i标签，如果点到i标签应向上找a标签
-    let aElement = $(e.target).closest('a');
-    let fileInitUrl = aElement.attr(targetAttr)
-    navigator.clipboard.writeText(fileInitUrl).then(() => {
-      if (aElement != null) aElement.text("复制成功！\(￣︶￣*\))")
-    }, () => {
-      if (aElement != null) aElement.text("复制失败了 (;´༎ຶД༎ຶ`)")
-    });
-  })
-
+    let aElement = $(e.target).closest("a");
+    let fileInitUrl = aElement.attr(targetAttr);
+    navigator.clipboard.writeText(fileInitUrl).then(
+      () => {
+        if (aElement != null) aElement.text("复制成功！(￣︶￣*))");
+      },
+      () => {
+        if (aElement != null) aElement.text("复制失败了 (;´༎ຶД༎ຶ`)");
+      }
+    );
+  });
 }
 // 将字符串转为文本对象
 function StringToTextFile(text, fileName) {
   var reader = new FileReader();
   let file = new File([text], fileName, {
-    type: 'text/plain'
+    type: "text/plain",
   });
   return file;
 }
 // 读取文本文件
 function readTextFile(file, readFun) {
-  reader.readAsText(file, 'utf-8');
+  reader.readAsText(file, "utf-8");
   reader.onload = function () {
-    readFun(reader.result)
+    readFun(reader.result);
   };
 }
 
 // 数据格式转换函数
 function Base64ToBlob(base64) {
-  var arr = base64.split(','), mime = arr[0].match(/:(.*?);/)[1],
-    bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+  var arr = base64.split(","),
+    mime = arr[0].match(/:(.*?);/)[1],
+    bstr = atob(arr[1]),
+    n = bstr.length,
+    u8arr = new Uint8Array(n);
   while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
-  console.log(new Blob([u8arr], { type: mime }))
-  return new Blob([u8arr], { type: mime })
+  console.log(new Blob([u8arr], { type: mime }));
+  return new Blob([u8arr], { type: mime });
 }
 //FileReader方法： https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
 function FileToBase64(file) {
@@ -66,19 +75,20 @@ function FileToBase64(file) {
       // target.result 该属性表示目标对象的DataURL
       resolve(e.target.result);
     };
-  })
-
+  });
 }
 
-function FileToBlob(file){
-  var data = new ArrayBuffer(file.length);//创建一个长度为text.length的二进制缓存区
-    var ui8a = new Uint8Array(data, 0);
-    for (var i = 0; i < text.length; i++){ 
-        ui8a[i] = file.charCodeAt(i);
-    }
-    return new Blob([u8arr], { type: mime })
+function FileToBlob(file) {
+  return new Promise((resolve, reject) => {
+    let reader = new FileReader();
+    // 传入一个参数对象即可得到基于该参数对象的文本内容
+    reader.readAsDataURL(file);
+    reader.onload = function (e) {
+      // target.result 该属性表示目标对象的DataURL
+      resolve(e.target.result);
+    };
+  });
 }
-
 
 // 过渡式更改标题的函数
 let recoveTitle = (function recoverTitle() {
@@ -90,15 +100,15 @@ let recoveTitle = (function recoverTitle() {
     }
     setTimeout(function () {
       document.title = originalTitle;
-    }, transitionTime)
-  }
+    }, transitionTime);
+  };
 })();
 // 如果transitionTime为空，则不恢复原来的标题
 function transitionChangeTitle(title = "", transitionTime) {
   document.title = title;
   // 如果没有设置恢复时间，就不恢复
   if (title.length == 0 || transitionTime != null) {
-    recoveTitle(transitionTime)
+    recoveTitle(transitionTime);
   }
 }
-export { transitionChangeTitle, FileToBase64, bindCopy, urlFormat }
+export { transitionChangeTitle, FileToBlob, FileToBase64, bindCopy, urlFormat };

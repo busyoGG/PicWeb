@@ -1,5 +1,5 @@
 import '../jquery.js'
-import { FileToBase64, bindCopy ,transitionChangeTitle} from '../utils.js'
+import { FileToBase64,FileToBlob, bindCopy ,transitionChangeTitle} from '../utils.js'
 import ImgFileCheckCompression from '../compression.js'
 import { fileDataProcessing,uploadToGithub } from '../upload-handles.js'
 
@@ -30,6 +30,7 @@ let UploadFromFile = async function (file) {
   transitionChangeTitle("base64...");
   // let base64Data = await FileToBase64(file);
   let fileData = await FileToBlob(file);
+  console.log("读取数据",fileData);
   // 还原标题
   transitionChangeTitle(); 
   uploadToGithub(fileData, file.name);

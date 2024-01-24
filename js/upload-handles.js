@@ -299,8 +299,6 @@ let uploadToGithub = function (fileData, fileName) {
     fetch(new Request('https://119.91.196.91/imgUpload/', {
         method: 'POST',
         body: JSON.stringify({
-            // message: `Web tool: Upload ${fileName} file`,
-            // branch: configObj.branch,
             'content': fileData,
             'fileName': fileName
         }),
