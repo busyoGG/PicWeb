@@ -270,9 +270,9 @@ let uploadToGithub = function (fileData, fileName) {
 
     fetch('https://119.91.196.91/imgUpload/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        },
+        // headers: {
+        //   'Content-Type': 'multipart/form-data'
+        // },
         body: formData,
         // signal: controller.signal
     }).then(function (response) {
